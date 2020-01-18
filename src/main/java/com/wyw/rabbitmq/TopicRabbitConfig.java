@@ -42,7 +42,7 @@ public class TopicRabbitConfig {
      * 创建主体类型的交换机
      */
     @Bean
-    TopicExchange exchange() {
+    TopicExchange topicExchange() {
         return new TopicExchange("topic-exchange");
     }
 
@@ -52,7 +52,7 @@ public class TopicRabbitConfig {
      */
     @Bean
     Binding bindingExchangeMessage1() {
-        return BindingBuilder.bind(firstQueue()).to(exchange()).with(man);
+        return BindingBuilder.bind(firstQueue()).to(topicExchange()).with(man);
     }
 
     /**
@@ -61,7 +61,7 @@ public class TopicRabbitConfig {
      */
     @Bean
     Binding bindingExchangeMessage2() {
-        return BindingBuilder.bind(secondQueue()).to(exchange()).with("topic.#");
+        return BindingBuilder.bind(secondQueue()).to(topicExchange()).with("topic.#");
     }
 
 

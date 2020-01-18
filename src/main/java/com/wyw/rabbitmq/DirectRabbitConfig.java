@@ -35,7 +35,7 @@ public class DirectRabbitConfig {
      * 队列和交换机进行绑定
      */
     @Bean
-    public Binding binding(){
+    public Binding directBinding(){
         return BindingBuilder.bind(directQueue()).to(directExchange()).with("direct");// 队列对象、交换机对象、路由key
     }
 

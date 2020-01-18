@@ -142,6 +142,27 @@ public class Receiver {
     }
 
     /**
+     * 监听延时队列消息
+     * @param msg 消息内容
+     * @param message 消息对象
+     * @param channel 通道
+     */
+    @RabbitListener(queues = "delay.queue.dxl")
+    public void delayQueueTTL(String msg, Message message, Channel channel){
+        System.out.println("delay.queue.dxl接受消息:"+msg);
+//        System.out.println("消息对象："+message);
+//        System.out.println("消息通道："+channel);
+        // 该消息的index
+        final long deliveryTag = message.getMessageProperties().getDeliveryTag();
+
+        // 消费消息
+        Boolean consume_result = consume(msg);
+
+        // 消息手动应答
+        msgAnswer(channel,deliveryTag,consume_result,msg);
+    }
+
+    /**
      * 消息应答
      * @param channel 通道
      * @param deliveryTag 该消息索引

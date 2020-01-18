@@ -44,4 +44,14 @@ public class RabbitmqController {
         return "生产消息--主题型yes";
     }
 
+    /**
+     * 生产消息--延时队列TTL
+     */
+    @GetMapping("/delayTTLSender")
+    public String delayTTLSender(@RequestParam String msg){
+        System.out.println("生产消息--延时队列TTLmsg:"+msg);
+        sender.sendDelayTTL(msg);
+        return "生产消息--延时队列TTLyes";
+    }
+
 }
