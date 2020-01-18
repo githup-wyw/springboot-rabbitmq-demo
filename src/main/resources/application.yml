@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  rabbitmq:
+    host: 47.107.255.104
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: wyw-test #虚拟主机名
+    #采用手动应答
+    listener:
+      simple:
+        acknowledge-mode: manual
